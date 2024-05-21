@@ -5,7 +5,7 @@
     >
       <div class="flex h-3/5 items-center justify-between gap-4">
         <img
-          src="~/assets/logo2.png"
+          src="~/assets/logo.png"
           alt="RentYourBeat Logo"
           class="h-3/4 xl:h-full"
         />
