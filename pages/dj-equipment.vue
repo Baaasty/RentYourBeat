@@ -4,10 +4,9 @@
       <SiteBanner
         title="DJ-Equipment"
         description="Hier findest du bald DJ-Equipment"
-        image="~/assets/start-background.webp"
+        image="bg-[url('~/assets/images/dj-background.webp')]"
       />
       <section class="overflow-hidden">
-        <h2 class="text-4xl font-semibold">DJ-Equipment</h2>
       </section>
     </main>
   </div>

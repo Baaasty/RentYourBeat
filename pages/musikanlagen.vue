@@ -4,10 +4,9 @@
       <SiteBanner
         title="Musikanlagen"
         description="Hier findest du bald Musikanlagen"
-        image="~/assets/start-background.webp"
+        image="bg-[url('~/assets/images/speaker-background.webp')]"
       />
       <section class="overflow-hidden">
-        <h2 class="text-4xl font-semibold">Musikanlagen</h2>
       </section>
     </main>
   </div>

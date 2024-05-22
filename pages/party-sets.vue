@@ -4,11 +4,9 @@
       <SiteBanner
         title="Party-Sets"
         description="Hier findest du bald Party-Sets"
-        image="~/assets/start-background.webp"
+        image="bg-[url('~/assets/images/set-background.webp')]"
       />
-      <section class="overflow-hidden">
-        <h2 class="text-4xl font-semibold">Party-Sets</h2>
-      </section>
+      <section class="overflow-hidden"></section>
     </main>
   </div>
 </template>

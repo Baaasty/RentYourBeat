@@ -4,10 +4,9 @@
       <SiteBanner
         title="Lichttechnik"
         description="Hier findest du bald Lichttechnik"
-        image="~/assets/start-background.webp"
+        image="bg-[url('~/assets/images/light-background.webp')]"
       />
       <section class="overflow-hidden">
-        <h2 class="text-4xl font-semibold">Lichttechnik</h2>
       </section>
     </main>
   </div>
