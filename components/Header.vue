@@ -31,7 +31,7 @@
       >
         <NuxtLink
           v-for="link in links"
-          :to="link.page"
+          :to="{ name: link.page }"
           class="w-full pb-1.5 pl-5 pt-1.5 text-xl font-semibold transition-colors duration-150 ease-in-out hover:bg-black hover:bg-opacity-10 hover:text-gray-300"
           @click="toggleSidebar(false)"
         >
