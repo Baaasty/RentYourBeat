@@ -21,7 +21,7 @@ const signInWithOAuth = async (prov: Provider) => {
   const { data, error } = await client.auth.signInWithOAuth({
     provider: prov,
     options: {
-      redirectTo: "http://rentyourbeat.de/confirm/",
+      redirectTo: "http://www.rentyourbeat.de/confirm/",
     },
   });
 
