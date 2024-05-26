@@ -2,8 +2,8 @@
   <button
     class="flex w-full items-center gap-3 rounded bg-black px-3 py-2 text-left text-white"
   >
-    <Icon :name="iconname" size="50" />
-    <span class="text-sm">{{ text }}</span>
+    <Icon :name="iconname" size="42" />
+    <span class="text-md md:text-sm">{{ text }}</span>
   </button>
 </template>
 
