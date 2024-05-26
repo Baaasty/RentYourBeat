@@ -1,27 +1,28 @@
 <template>
   <main
-    class="flex min-h-screen flex-col items-center justify-center bg-gray-100"
+    class="flex min-h-screen items-center justify-around bg-pizazz-500 bg-[url('~/assets/images/start-background.webp')] bg-[length:auto_80%] bg-[-160px_140%] bg-no-repeat"
   >
-    <h1 class="mb-8 text-4xl font-bold">LoginPage</h1>
-    <button
-      @click="signInWithOAuth('google')"
-      class="rounded bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-    >
-      Sign in with Google
-    </button>
+    <section class="hidden flex-col gap-4 text-white lg:flex">
+      <h2 class="text-3xl font-bold">
+        Willkommen zurück. <br />
+        Schön, dass du da bist!
+      </h2>
+      <p class="italic">- Dein RentYourBeat Team</p>
+    </section>
+    <Loginbox @signInWithOAuth="(prov: Provider) => signInWithOAuth(prov)" />
   </main>
 </template>
 
 <script lang="ts" setup>
 const client = useSupabaseClient();
 
-type Provider = "google";
+type Provider = "google" | "apple";
 
 const signInWithOAuth = async (prov: Provider) => {
   const { data, error } = await client.auth.signInWithOAuth({
     provider: prov,
     options: {
-      redirectTo: "http://www.rentyourbeat.de/confirm/",
+      redirectTo: `${useRuntimeConfig().public.siteUrl}/confirm/`,
     },
   });
 

@@ -11,6 +11,12 @@ export default defineNuxtConfig({
   routeRules: {
     "/products": { redirect: "/" },
   },
+  runtimeConfig: {
+    public: {
+      siteUrl: process.env.SITE_URL,
+    },
+  },
+
   supabase: {
     redirectOptions: {
       login: "/login",

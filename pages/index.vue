@@ -20,17 +20,13 @@
           </p>
           <NuxtLink
             :to="{ name: 'musikanlagen' }"
-            class="mt-4 inline-block transform rounded-full bg-blue-500 px-6 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+            class="mt-8 inline-block transform rounded-full bg-blue-500 px-6 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
           >
             Musikanlage auswählen
           </NuxtLink>
         </div>
       </div>
     </section>
-    <NuxtLink class="bg-pizazz-300" to="dashboard">Dashboard</NuxtLink>
-    <br />
-    <button class="bg-pizazz-300" @click="signOut">Sign Out</button>
-    <p>{{ user ? "Signed in" : "Not signed in" }}</p>
   </main>
 </template>
 

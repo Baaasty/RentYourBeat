@@ -4,7 +4,9 @@
       title="Dein Dashboard"
       description="Hier findest du alle wichtigen Informationen"
     />
-    <section class="overflow-hidden"></section>
+    <section class="overflow-hidden">
+      <button @click="logout()">Logout</button>
+    </section>
   </main>
 </template>
 
@@ -12,4 +14,9 @@
 definePageMeta({
   name: "dashboard",
 });
+
+const logout = async () => {
+  await useSupabaseClient().auth.signOut();
+  return navigateTo("/login");
+};
 </script>

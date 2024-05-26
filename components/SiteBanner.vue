@@ -13,11 +13,11 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps({
-  title: String,
-  description: String,
-  image: String,
-});
+const props = defineProps<{
+  title: string;
+  description: string;
+  image?: string;
+}>();
 </script>
 
 <style></style>

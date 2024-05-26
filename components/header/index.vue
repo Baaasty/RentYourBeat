@@ -1,15 +1,18 @@
 <template>
   <header
-    class="absolute z-50 flex h-20 w-full items-center justify-between px-6 text-white lg:px-[13%]"
+    class="absolute z-50 flex h-20 w-full items-center justify-between px-6 text-white lg:px-[5%] xl:px-[10%]"
   >
-    <div class="flex h-3/5 items-center justify-between gap-4">
+    <NuxtLink
+      :to="{ name: 'start' }"
+      class="flex h-3/5 items-center justify-between gap-4"
+    >
       <img
         src="~/assets/images/logo-white.png"
         alt="RentYourBeat Logo"
         class="h-3/4 xl:h-full"
       />
       <h1 class="text-2xl font-bold xl:text-4xl">RentYourBeat</h1>
-    </div>
+    </NuxtLink>
     <nav>
       <ul class="hidden space-x-4 lg:flex">
         <NuxtLink
@@ -39,29 +42,27 @@
             {{ link.name }}
           </li>
         </NuxtLink>
+
+        <HeaderAccountButton
+          class="absolute bottom-12 left-0 right-0 mx-auto w-fit"
+          @click="toggleSidebar(false)"
+        />
       </ul>
     </nav>
+    <HeaderAccountButton class="hidden lg:block" />
     <Icon
       :name="sidebar ? 'mingcute:close-fill' : 'mingcute:menu-fill'"
       size="32px"
-      class="right-6 transition-colors duration-150 ease-in-out lg:!hidden"
-      :class="{ 'z-50': sidebar, fixed: sidebar }"
+      class="fixed right-6 transition-colors duration-150 ease-in-out lg:!hidden"
+      :class="{ 'z-50': sidebar }"
       @click="toggleSidebar(null)"
     />
   </header>
 </template>
 
 <script lang="ts" setup>
-const client = useSupabaseClient();
-const user = useSupabaseUser();
-
-const isLoggedin = computed(() => user.value !== null);
 const sidebar = ref(false);
-
-const logout = async () => {
-  await client.auth.signOut();
-  return navigateTo("/login");
-};
+const account = ref(false);
 
 const toggleSidebar = (active: boolean | null) => {
   sidebar.value = active == null ? !sidebar.value : active;
