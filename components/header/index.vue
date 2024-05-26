@@ -29,7 +29,7 @@
         </NuxtLink>
       </ul>
       <ul
-        class="fixed right-0 top-0 z-50 flex h-screen w-full flex-col items-start justify-start bg-black bg-opacity-20 pt-20 backdrop-blur md:w-60 lg:hidden"
+        class="fixed right-0 top-0 z-50 flex h-[200vh] w-full flex-col items-start justify-start bg-black bg-opacity-20 pt-20 backdrop-blur md:w-60 lg:hidden"
         v-if="sidebar"
       >
         <NuxtLink
@@ -44,7 +44,7 @@
         </NuxtLink>
 
         <HeaderAccountButton
-          class="absolute bottom-12 left-0 right-0 mx-auto w-fit"
+          class="absolute left-0 right-0 top-[90dvh] mx-auto w-fit"
           @click="toggleSidebar(false)"
         />
       </ul>
