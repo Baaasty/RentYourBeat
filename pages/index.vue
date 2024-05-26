@@ -34,11 +34,4 @@
 definePageMeta({
   name: "start",
 });
-
-const client = useSupabaseClient();
-const user = useSupabaseUser();
-
-const signOut = async () => {
-  await client.auth.signOut();
-};
 </script>
