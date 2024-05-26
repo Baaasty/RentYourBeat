@@ -7,7 +7,7 @@
         Willkommen zurück. <br />
         Schön, dass du da bist!
       </h2>
-      <p class="italic">- Dein RentYourBeat Team</p>
+      <p class="italic">- Dein RentYourBeat-Team</p>
     </section>
     <Loginbox @signInWithOAuth="(prov: Provider) => signInWithOAuth(prov)" />
   </main>
