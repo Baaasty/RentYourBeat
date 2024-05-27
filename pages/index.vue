@@ -34,4 +34,8 @@
 definePageMeta({
   name: "start",
 });
+
+useHead({
+  title: "RentYourBeat - Startseite",
+});
 </script>

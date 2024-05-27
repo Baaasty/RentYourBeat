@@ -13,4 +13,8 @@
 definePageMeta({
   name: "lichttechnik",
 });
+
+useHead({
+  title: "RentYourBeat - Lichttechnik",
+});
 </script>

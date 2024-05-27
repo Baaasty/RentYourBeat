@@ -15,6 +15,10 @@ definePageMeta({
   name: "dashboard",
 });
 
+useHead({
+  title: "RentYourBeat - Dein Dashboard",
+});
+
 const logout = async () => {
   await useSupabaseClient().auth.signOut();
   return navigateTo("/login");

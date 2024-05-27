@@ -13,4 +13,8 @@
 definePageMeta({
   name: "party-sets",
 });
+
+useHead({
+  title: "RentYourBeat - Party-Sets",
+});
 </script>

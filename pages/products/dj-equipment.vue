@@ -13,4 +13,8 @@
 definePageMeta({
   name: "dj-equipment",
 });
+
+useHead({
+  title: "RentYourBeat - DJ-Equipment",
+});
 </script>

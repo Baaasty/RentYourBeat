@@ -12,3 +12,13 @@
     <AuthLoginbox />
   </main>
 </template>
+
+<script setup lang="ts">
+definePageMeta({
+  name: "login",
+});
+
+useHead({
+  title: "RentYourBeat - Anmelden",
+});
+</script>

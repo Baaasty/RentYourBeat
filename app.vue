@@ -15,10 +15,9 @@ useHead({
 });
 
 useSeoMeta({
-  title: "RentYourBeat",
-  ogTitle: "RentYourBeat",
+  ogTitle: "RentYourBeat - Miete Eventtechnik ganz einfach online.",
   description:
-    "Miete Eventtechnik für deine Feier ganz einfach online. Keine Anrufe, keine E-Mails – alles über unser Dashboard. Also, worauf wartest du? Lass die Party steigen!",
+    "Miete Eventtechnik für deine Feier einfach online. Keine Anrufe, keine E-Mails - alles über unser Dashboard. Also, worauf wartest du? Lass die Party steigen!",
   ogDescription: "Miete Eventtechnik für deine Feier ganz einfach online.",
 });
 </script>

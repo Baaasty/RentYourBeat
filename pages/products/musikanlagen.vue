@@ -13,4 +13,8 @@
 definePageMeta({
   name: "musikanlagen",
 });
+
+useHead({
+  title: "RentYourBeat - Musikanlagen",
+});
 </script>

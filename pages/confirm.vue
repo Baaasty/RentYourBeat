@@ -7,6 +7,10 @@ definePageMeta({
   name: "confirm",
 });
 
+useHead({
+  title: "RentYourBeat - Warte auf Weiterleitung...",
+});
+
 const user = useSupabaseUser();
 
 const cookieName = useRuntimeConfig().public.supabase.cookieName;
