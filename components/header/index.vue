@@ -23,13 +23,11 @@
             '!font-semibold': $route.name === link.page,
           }"
         >
-          <li>
-            {{ link.name }}
-          </li>
+          {{ link.name }}
         </NuxtLink>
       </ul>
-      <ul
-        class="fixed right-0 top-0 z-50 flex h-[200vh] w-full flex-col items-start justify-start bg-black bg-opacity-20 pt-20 backdrop-blur md:w-60 lg:hidden"
+      <div
+        class="fixed right-0 top-0 z-50 flex h-lvh w-full flex-col items-start justify-start bg-black bg-opacity-20 pt-20 backdrop-blur md:w-60 lg:hidden"
         v-if="sidebar"
       >
         <NuxtLink
@@ -38,23 +36,20 @@
           class="w-full pb-1.5 pl-5 pt-1.5 text-xl font-semibold transition-colors duration-150 ease-in-out hover:bg-black hover:bg-opacity-10 hover:text-gray-300"
           @click="toggleSidebar(false)"
         >
-          <li>
-            {{ link.name }}
-          </li>
+          {{ link.name }}
         </NuxtLink>
-
         <HeaderAccountButton
-          class="absolute left-0 right-0 top-[90dvh] mx-auto w-fit"
+          class="absolute left-0 right-0 top-[90svh] mx-auto w-fit"
           @click="toggleSidebar(false)"
         />
-      </ul>
+      </div>
     </nav>
     <HeaderAccountButton class="hidden lg:block" />
     <Icon
       :name="sidebar ? 'mingcute:close-fill' : 'mingcute:menu-fill'"
       size="32px"
-      class="fixed right-6 transition-colors duration-150 ease-in-out lg:!hidden"
-      :class="{ 'z-50': sidebar }"
+      class="right-6 transition-colors duration-150 ease-in-out lg:!hidden"
+      :class="{ 'fixed z-50': sidebar }"
       @click="toggleSidebar(null)"
     />
   </header>
@@ -62,7 +57,6 @@
 
 <script lang="ts" setup>
 const sidebar = ref(false);
-const account = ref(false);
 
 const toggleSidebar = (active: boolean | null) => {
   sidebar.value = active == null ? !sidebar.value : active;
@@ -76,5 +70,3 @@ const links = [
   { name: "Party-Sets", page: "party-sets" },
 ];
 </script>
-
-<style></style>

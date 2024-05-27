@@ -9,23 +9,6 @@
       </h2>
       <p class="italic">- Dein RentYourBeat-Team</p>
     </section>
-    <Loginbox @signInWithOAuth="(prov: Provider) => signInWithOAuth(prov)" />
+    <AuthLoginbox />
   </main>
 </template>
-
-<script lang="ts" setup>
-const client = useSupabaseClient();
-
-type Provider = "google" | "apple";
-
-const signInWithOAuth = async (prov: Provider) => {
-  const { data, error } = await client.auth.signInWithOAuth({
-    provider: prov,
-    options: {
-      redirectTo: `${useRuntimeConfig().public.siteUrl}/confirm/`,
-    },
-  });
-
-  if (error) console.error("OAuth error:", error.message);
-};
-</script>

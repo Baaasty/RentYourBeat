@@ -1,18 +1,18 @@
 <template>
-  <NuxtLink
+  <BaseButton
     v-if="user"
-    :to="{ name: 'dashboard' }"
-    class="rounded-full bg-blue-500 px-4 py-2 font-semibold text-white duration-150 ease-in-out hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+    @click="navigateTo({ name: 'dashboard' })"
+    class="!rounded-full"
   >
     Dein Dashboard
-  </NuxtLink>
-  <NuxtLink
+  </BaseButton>
+  <BaseButton
     v-else
-    :to="{ name: 'login' }"
-    class="rounded-full bg-blue-500 px-4 py-2 font-semibold text-white duration-150 ease-in-out hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+    @click="navigateTo({ name: 'login' })"
+    class="!rounded-full"
   >
     Anmelden
-  </NuxtLink>
+  </BaseButton>
 </template>
 
 <script lang="ts" setup>

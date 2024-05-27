@@ -3,6 +3,10 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  name: "confirm",
+});
+
 const user = useSupabaseUser();
 
 const cookieName = useRuntimeConfig().public.supabase.cookieName;

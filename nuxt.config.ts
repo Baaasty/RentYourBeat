@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "@pinia/nuxt",
     "@nuxtjs/supabase",
+    "@vee-validate/nuxt",
   ],
   routeRules: {
     "/products": { redirect: "/" },
@@ -16,7 +17,6 @@ export default defineNuxtConfig({
       siteUrl: process.env.SITE_URL,
     },
   },
-
   supabase: {
     redirectOptions: {
       login: "/login",
@@ -24,6 +24,9 @@ export default defineNuxtConfig({
       include: ["/dashboard(/*)?"],
       cookieRedirect: true,
     },
+  },
+  veeValidate: {
+    autoImports: true,
   },
   googleFonts: {
     families: {
