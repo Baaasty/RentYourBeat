@@ -10,7 +10,11 @@ export default defineNuxtConfig({
     "@vee-validate/nuxt",
   ],
   routeRules: {
+    "/": { prerender: true },
     "/products": { redirect: "/" },
+    "/dashboard(/*)?": {
+      ssr: false,
+    },
   },
   runtimeConfig: {
     public: {
