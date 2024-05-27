@@ -1,9 +1,13 @@
 <template>
-  <div class="w-[450px] max-w-[90vw] rounded-lg bg-white p-10 text-black">
+  <div
+    class="w-[450px] max-w-[90vw] rounded-lg bg-white p-6 text-black md:p-10"
+  >
     <div class="flex flex-col gap-6">
       <div>
-        <h3 class="mb-1 text-2xl font-semibold">Anmelden</h3>
-        <p>Melde dich mit deinem Konto bei uns an.</p>
+        <h3 class="text-2xl font-semibold">Anmelden</h3>
+        <p class="mt-1 hidden md:block">
+          Melde dich mit deinem Konto bei uns an.
+        </p>
       </div>
       <form @submit.prevent="handleSubmit">
         <AuthFormField

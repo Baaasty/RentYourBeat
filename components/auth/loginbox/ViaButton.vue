@@ -1,7 +1,7 @@
 <template>
-  <BaseButton class="!bg-black hover:!bg-blue-600">
-    <Icon :name="iconname" size="46" />
-    <span class="text-md md:text-sm">{{ text }}</span>
+  <BaseButton class="!justify-start !bg-black px-3 hover:!bg-blue-600">
+    <Icon :name="iconname" size="48" />
+    <p class="md:text-sm">{{ text }}</p>
   </BaseButton>
 </template>
 
