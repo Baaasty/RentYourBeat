@@ -119,8 +119,6 @@ const signInWithEmailAndPassword = async (
   firstName: string,
   lastName: string,
 ) => {
-  alert(`${window.location.origin}/confirm`);
-
   const { data, error } = await client.auth.signUp({
     email,
     password,
@@ -132,6 +130,8 @@ const signInWithEmailAndPassword = async (
       emailRedirectTo: `${window.location.origin}/confirm`,
     },
   });
+
+  console.log(data, error);
 
   if (error) {
     console.error("Sign in error:", error.message);

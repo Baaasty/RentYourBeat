@@ -4,25 +4,22 @@
     @click="navigateTo({ name: 'dashboard' })"
     class="!rounded-full"
   >
-    Dein Dashboard
+    {{
+      user.user_metadata.first_name !== undefined &&
+      user.user_metadata.last_name !== undefined
+        ? user.user_metadata.first_name + " " + user.user_metadata.last_name
+        : user.user_metadata.full_name
+    }}
   </BaseButton>
   <BaseButton
-    v-else-if="hasLoggedIn"
+    v-else
     @click="navigateTo({ name: 'login' })"
     class="!rounded-full"
   >
     Anmelden
   </BaseButton>
-  <BaseButton
-    v-else
-    @click="navigateTo({ name: 'register' })"
-    class="!rounded-full"
-  >
-    Registrieren
-  </BaseButton>
 </template>
 
 <script lang="ts" setup>
 const user = useSupabaseUser();
-const hasLoggedIn = useCookie("hasLoggedIn");
 </script>

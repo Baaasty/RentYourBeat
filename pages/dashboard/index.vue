@@ -5,7 +5,7 @@
       description="Hier findest du alle wichtigen Informationen"
     />
     <section class="overflow-hidden">
-      <button @click="logout()">Logout</button>
+      <button @click="logout">LOGOUT</button>
     </section>
   </main>
 </template>
@@ -19,8 +19,10 @@ useHead({
   title: "RentYourBeat - Dein Dashboard",
 });
 
+const client = useSupabaseClient();
+
 const logout = async () => {
-  await useSupabaseClient().auth.signOut();
+  await client.auth.signOut();
   return navigateTo("/login");
 };
 </script>
