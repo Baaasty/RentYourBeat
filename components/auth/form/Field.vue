@@ -1,7 +1,12 @@
 <template>
   <div class="mb-2">
-    <label :for="props.name" :class="labelClass">{{ props.label }}</label>
-    <div class="relative">
+    <label
+      :for="props.name"
+      :class="{ 'text-red-500': !fieldValid, 'text-black': fieldValid }"
+    >
+      {{ props.label }}
+    </label>
+    <div class="group relative">
       <input
         v-model="value"
         :type="
@@ -14,8 +19,11 @@
         :name="props.name"
         :id="props.name"
         :autocomplete="props.autocomplete"
-        class="w-full rounded-md border p-2 pr-10 shadow-sm"
-        :class="inputClass"
+        class="w-full rounded-md border p-2 pr-10 shadow-sm transition-all focus:bg-gray-200 group-hover:bg-gray-200"
+        :class="{
+          'border-red-500': !fieldValid,
+          'border-gray-300': fieldValid,
+        }"
         @blur="handleBlur"
         @input="handleInput"
       />
@@ -29,7 +37,10 @@
         class="absolute right-0 top-1/2 z-10 float-right h-full w-auto -translate-y-1/2 transform cursor-pointer p-2"
       />
     </div>
-    <p v-if="errorMessage" class="mt-1 text-xs text-red-500">
+    <p
+      v-show="errorMessage"
+      class="mt-1 text-xs text-red-500 transition-opacity duration-150"
+    >
       {{ errorMessage }}
     </p>
   </div>
@@ -63,28 +74,21 @@ const { value, errorMessage, validate } = useField(
   },
 );
 
-const labelClass = ref("text-black");
-const inputClass = ref("border-gray-300");
+const fieldValid = ref(true);
 const passwordVisible = ref(false);
 
-const handleBlur = async (): void => {
+const handleBlur = async () => {
   if (!validateOnChange.value) await validateField();
 };
 
-const handleInput = async (): void => {
+const handleInput = async () => {
   if (validateOnChange.value) await validateField();
 };
 
 const validateField = async (): Promise<boolean> => {
   const { valid } = await validate();
 
-  if (valid) {
-    labelClass.value = "text-black";
-    inputClass.value = "border-gray-300";
-  } else {
-    labelClass.value = "text-red-500";
-    inputClass.value = "border-red-500";
-  }
+  fieldValid.value = valid;
 
   return valid;
 };

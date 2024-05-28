@@ -16,11 +16,6 @@ export default defineNuxtConfig({
       ssr: false,
     },
   },
-  runtimeConfig: {
-    public: {
-      siteUrl: process.env.SITE_URL,
-    },
-  },
   supabase: {
     redirectOptions: {
       login: "/login",

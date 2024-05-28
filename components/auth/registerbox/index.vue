@@ -1,59 +1,57 @@
 <template>
   <div
-    class="w-[450px] max-w-[90vw] rounded-lg bg-white p-6 text-black md:p-10"
+    class="flex min-h-[460px] w-[450px] max-w-[90vw] flex-col justify-between gap-4 rounded-lg bg-white p-6 text-black md:p-10"
   >
-    <div class="flex flex-col gap-6">
-      <div>
-        <h3 class="text-2xl font-semibold">Registrieren</h3>
-        <p class="mt-1 hidden md:block">Erstelle dein Konto bei uns.</p>
-      </div>
-      <form @submit.prevent="handleSubmit">
-        <div class="flex gap-3">
-          <AuthFormField
-            ref="firstnameField"
-            label="Vorname"
-            type="text"
-            name="firstname"
-            autocomplete="given-name"
-            :validator="firstnameValidator"
-          />
-          <AuthFormField
-            ref="lastnameField"
-            label="Nachname"
-            type="text"
-            name="lastname"
-            autocomplete="family-name"
-            :validator="lastnameValidator"
-          />
-        </div>
-        <AuthFormField
-          ref="emailField"
-          label="E-Mail"
-          type="email"
-          name="email"
-          autocomplete="email"
-          :validator="emailValidator"
-        />
-        <AuthFormField
-          ref="passwordField"
-          label="Passwort"
-          type="password"
-          name="password"
-          autocomplete="new-password"
-          :validator="passwordValidator"
-        />
-        <BaseButton type="submit" class="mt-4 w-full">Registrieren</BaseButton>
-        <p class="mt-1 text-xs drop-shadow-md">
-          Du hast bereits ein Konto?
-          <NuxtLink
-            :to="{ name: 'login' }"
-            class="text-blue-500 hover:text-blue-600"
-          >
-            Anmelden
-          </NuxtLink>
-        </p>
-      </form>
+    <div>
+      <h3 class="text-2xl font-semibold">Registrieren</h3>
+      <p class="mt-1 hidden md:block">Erstelle dein Konto bei uns.</p>
     </div>
+    <form @submit.prevent="handleSubmit">
+      <div class="flex gap-3">
+        <AuthFormField
+          ref="firstnameField"
+          label="Vorname"
+          type="text"
+          name="firstname"
+          autocomplete="given-name"
+          :validator="firstnameValidator"
+        />
+        <AuthFormField
+          ref="lastnameField"
+          label="Nachname"
+          type="text"
+          name="lastname"
+          autocomplete="family-name"
+          :validator="lastnameValidator"
+        />
+      </div>
+      <AuthFormField
+        ref="emailField"
+        label="E-Mail"
+        type="email"
+        name="email"
+        autocomplete="email"
+        :validator="emailValidator"
+      />
+      <AuthFormField
+        ref="passwordField"
+        label="Passwort"
+        type="password"
+        name="password"
+        autocomplete="new-password"
+        :validator="passwordValidator"
+      />
+      <BaseButton type="submit" class="mt-4 w-full">Registrieren</BaseButton>
+      <p class="mt-1 text-xs drop-shadow-md">
+        Du hast bereits ein Konto?
+        <NuxtLink
+          :to="{ name: 'login' }"
+          class="text-blue-500 hover:text-blue-600"
+        >
+          Anmelden
+        </NuxtLink>
+      </p>
+    </form>
   </div>
 </template>
 

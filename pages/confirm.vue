@@ -21,6 +21,7 @@ watch(
   () => {
     if (user.value) {
       useCookie(`${cookieName}-redirect-path`).value = null;
+      useCookie("hasLoggedIn").value = "true";
       return navigateTo(redirectPath || "/");
     }
   },
