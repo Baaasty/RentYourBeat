@@ -27,6 +27,15 @@
           :validator="passwordValidator"
         />
         <BaseButton type="submit" class="mt-4 w-full">Einloggen</BaseButton>
+        <p class="mt-1 text-xs drop-shadow-md">
+          Noch kein Konto?
+          <NuxtLink
+            :to="{ name: 'register' }"
+            class="text-blue-500 hover:text-blue-600"
+          >
+            Jetzt registrieren
+          </NuxtLink>
+        </p>
       </form>
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
         <AuthLoginboxViaButton
@@ -51,18 +60,9 @@ import { string } from "yup";
 const client = useSupabaseClient();
 
 const emailValidator = string()
-  .required("E-Mail is required")
-  .email("E-Mail is invalid.");
-const passwordValidator = string()
-  .required("Password is required")
-  .min(8, "Password must be at least 8 characters")
-  .matches(/[a-z]/, "Password must contain at least one lowercase letter")
-  .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
-  .matches(/\d/, "Password must contain at least one digit")
-  .matches(
-    /[!@#$%^&*.,]/,
-    "Password must contain at least one special character: !@#$%^&*",
-  );
+  .required("E-Mail ist erforderlich")
+  .email("E-Mail ist ungültig");
+const passwordValidator = string().required("Passwort ist erforderlich");
 
 const emailField = ref<InstanceType<typeof AuthFormField>>();
 const passwordField = ref<InstanceType<typeof AuthFormField>>();
@@ -98,7 +98,7 @@ const signInWithOAuth = async (prov: Provider) => {
   const { data, error } = await client.auth.signInWithOAuth({
     provider: prov,
     options: {
-      redirectTo: `${useRuntimeConfig().public.siteUrl}/confirm/`,
+      redirectTo: `${window.location.origin}/confirm/`,
     },
   });
 
