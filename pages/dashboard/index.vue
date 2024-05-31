@@ -6,6 +6,7 @@
     />
     <section class="overflow-hidden">
       <button @click="logout">LOGOUT</button>
+      <p class="whitespace-pre-wrap">{{ JSON.stringify(user, null, 2) }}</p>
     </section>
   </main>
 </template>
@@ -20,6 +21,7 @@ useHead({
 });
 
 const client = useSupabaseClient();
+const user = useSupabaseUser();
 
 const logout = async () => {
   await client.auth.signOut();

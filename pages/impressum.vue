@@ -1,16 +1,16 @@
 <template>
   <main class="w-full overflow-x-hidden">
-    <SiteBanner title="Datenschutzerkläurung" description="" />
+    <SiteBanner title="Impressum" description="" />
     <section class="overflow-hidden"></section>
   </main>
 </template>
 
 <script lang="ts" setup>
 definePageMeta({
-  name: "datenschutz",
+  name: "impressum",
 });
 
 useHead({
-  title: "RentYourBeat - Datenschutzerkläurung",
+  title: "RentYourBeat - Impressum",
 });
 </script>
