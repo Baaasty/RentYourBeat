@@ -8,6 +8,7 @@
 <script lang="ts" setup>
 definePageMeta({
   name: "datenschutz",
+  auth: false,
 });
 
 useHead({

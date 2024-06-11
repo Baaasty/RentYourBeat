@@ -12,6 +12,7 @@
 <script lang="ts" setup>
 definePageMeta({
   name: "dj-equipment",
+  auth: false,
 });
 
 useHead({

@@ -1,15 +1,10 @@
 <template>
   <BaseButton
-    v-if="user"
+    v-if="status === 'authenticated'"
     @click="navigateTo({ name: 'dashboard' })"
     class="!rounded-full"
   >
-    {{
-      user.user_metadata.first_name !== undefined &&
-      user.user_metadata.last_name !== undefined
-        ? user.user_metadata.first_name + " " + user.user_metadata.last_name
-        : user.user_metadata.full_name
-    }}
+    Dashboard
   </BaseButton>
   <BaseButton
     v-else
@@ -21,5 +16,5 @@
 </template>
 
 <script lang="ts" setup>
-const user = useSupabaseUser();
+const { status } = useAuth();
 </script>

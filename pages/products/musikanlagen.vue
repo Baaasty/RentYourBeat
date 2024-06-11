@@ -12,6 +12,7 @@
 <script lang="ts" setup>
 definePageMeta({
   name: "musikanlagen",
+  auth: false,
 });
 
 useHead({

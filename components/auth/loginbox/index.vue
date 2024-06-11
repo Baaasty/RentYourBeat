@@ -55,7 +55,7 @@
 import type { AuthFormField } from "#build/components";
 import { string } from "yup";
 
-const client = useSupabaseClient();
+const { signIn } = useAuth();
 
 const emailValidator = string()
   .required("E-Mail ist erforderlich")
@@ -77,26 +77,18 @@ const handleSubmit = async () => {
 };
 
 const signInWithEmailAndPassword = async (email: string, password: string) => {
-  const { data, error } = await client.auth.signInWithPassword({
+  signIn("credentials", {
+    callbackUrl: useRoute().query.callbackUrl as string | undefined,
     email,
     password,
   });
-
-  if (error) return console.error("Sign in error:", error.message);
-
-  navigateTo({ name: "confirm" });
 };
 
 type Provider = "google" | "facebook";
 
 const signInWithOAuth = async (prov: Provider) => {
-  const { data, error } = await client.auth.signInWithOAuth({
-    provider: prov,
-    options: {
-      redirectTo: `${window.location.origin}/confirm`,
-    },
+  signIn(prov, {
+    callbackUrl: useRoute().query.callbackUrl as string | undefined,
   });
-
-  if (error) return console.error("Sign in error:", error.message);
 };
 </script>

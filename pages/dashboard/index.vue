@@ -4,9 +4,9 @@
       title="Dein Dashboard"
       description="Hier findest du alle wichtigen Informationen"
     />
-    <section class="overflow-hidden">
-      <button @click="logout">LOGOUT</button>
-      <p class="whitespace-pre-wrap">{{ JSON.stringify(user, null, 2) }}</p>
+    <section class="overflow-hidden pt-4">
+      <BaseButton @click="signOut()">LOGOUT</BaseButton>
+      <p class="whitespace-pre-wrap">{{ data }}</p>
     </section>
   </main>
 </template>
@@ -20,11 +20,7 @@ useHead({
   title: "RentYourBeat - Dein Dashboard",
 });
 
-const client = useSupabaseClient();
-const user = useSupabaseUser();
+const { signOut } = useAuth();
 
-const logout = async () => {
-  await client.auth.signOut();
-  return navigateTo("/login");
-};
+const { data } = useFetch("/api/me");
 </script>

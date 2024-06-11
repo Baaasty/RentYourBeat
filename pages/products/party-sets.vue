@@ -12,6 +12,7 @@
 <script lang="ts" setup>
 definePageMeta({
   name: "party-sets",
+  auth: false,
 });
 
 useHead({

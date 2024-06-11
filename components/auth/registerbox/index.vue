@@ -59,8 +59,6 @@
 import type { AuthFormField } from "#build/components";
 import { string } from "yup";
 
-const client = useSupabaseClient();
-
 const firstnameValidator = string()
   .required("Vorname ist erforderlich")
   .min(2, "Der Vorname muss mindestens 2 Zeichen lang sein")
@@ -118,24 +116,5 @@ const signInWithEmailAndPassword = async (
   password: string,
   firstName: string,
   lastName: string,
-) => {
-  const { data, error } = await client.auth.signUp({
-    email,
-    password,
-    options: {
-      data: {
-        first_name: firstName,
-        last_name: lastName,
-      },
-      emailRedirectTo: `${window.location.origin}/confirm`,
-    },
-  });
-
-  console.log(data, error);
-
-  if (error) {
-    console.error("Sign in error:", error.message);
-    return;
-  }
-};
+) => {};
 </script>

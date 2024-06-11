@@ -8,6 +8,7 @@
 <script lang="ts" setup>
 definePageMeta({
   name: "impressum",
+  auth: false,
 });
 
 useHead({
