@@ -38,14 +38,11 @@
     </form>
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <AuthLoginboxViaButton
-        iconname="mingcute:google-fill"
-        text="Anmelden mit Google"
-        @click="signInWithOAuth('google')"
-      />
-      <AuthLoginboxViaButton
-        iconname="mingcute:facebook-fill"
-        text="Anmelden mit Facebook"
-        @click="signInWithOAuth('facebook')"
+        v-for="provider in providers"
+        :key="provider.id.name"
+        :iconname="`mingcute:${provider.id}-fill`"
+        :text="`Anmelden mit ${provider.name}`"
+        @click="signIn(provider.id.toString())"
       />
     </div>
   </div>
@@ -55,7 +52,10 @@
 import type { AuthFormField } from "#build/components";
 import { string } from "yup";
 
-const { signIn } = useAuth();
+const { signIn, getProviders } = useAuth();
+const providers = Object.values(await getProviders()).filter(
+  (provider) => (provider.id as unknown as string) !== "credentials",
+);
 
 const emailValidator = string()
   .required("E-Mail ist erforderlich")
@@ -76,19 +76,8 @@ const handleSubmit = async () => {
     );
 };
 
-const signInWithEmailAndPassword = async (email: string, password: string) => {
-  signIn("credentials", {
-    callbackUrl: useRoute().query.callbackUrl as string | undefined,
-    email,
-    password,
-  });
-};
-
-type Provider = "google" | "facebook";
-
-const signInWithOAuth = async (prov: Provider) => {
-  signIn(prov, {
-    callbackUrl: useRoute().query.callbackUrl as string | undefined,
-  });
-};
+const signInWithEmailAndPassword = async (
+  email: string,
+  password: string,
+) => {};
 </script>

@@ -56,23 +56,17 @@ interface Props {
   initialValue?: string;
   autocomplete?: string;
   validateOnChange?: boolean;
-  validator?: StringSchema<string> | undefined;
+  schema?: StringSchema<string>;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  validator: undefined,
-});
+const props = defineProps<Props>();
 
 const validateOnChange = toRef(props, "validateOnChange");
 
-const { value, errorMessage, validate } = useField(
-  props.name,
-  props.validator,
-  {
-    initialValue: props.initialValue,
-    validateOnValueUpdate: validateOnChange.value,
-  },
-);
+const { value, errorMessage, validate } = useField(props.name, props.schema, {
+  initialValue: props.initialValue,
+  validateOnValueUpdate: validateOnChange.value,
+});
 
 const fieldValid = ref(true);
 const passwordVisible = ref(false);

@@ -33,7 +33,6 @@
 <script lang="ts" setup>
 definePageMeta({
   name: "start",
-  auth: false,
 });
 
 useHead({

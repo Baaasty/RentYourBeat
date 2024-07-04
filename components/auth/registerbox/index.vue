@@ -14,7 +14,7 @@
           type="text"
           name="firstname"
           autocomplete="given-name"
-          :validator="firstnameValidator"
+          :schema="registerSchema.firstname"
         />
         <AuthFormField
           ref="lastnameField"
@@ -22,7 +22,7 @@
           type="text"
           name="lastname"
           autocomplete="family-name"
-          :validator="lastnameValidator"
+          :schema="registerSchema.lastname"
         />
       </div>
       <AuthFormField
@@ -31,7 +31,7 @@
         type="email"
         name="email"
         autocomplete="email"
-        :validator="emailValidator"
+        :schema="registerSchema.email"
       />
       <AuthFormField
         ref="passwordField"
@@ -39,9 +39,25 @@
         type="password"
         name="password"
         autocomplete="new-password"
-        :validator="passwordValidator"
+        :schema="registerSchema.password"
       />
-      <BaseButton type="submit" class="mt-4 w-full">Registrieren</BaseButton>
+      <BaseButton
+        type="submit"
+        class="mt-4 w-full disabled:cursor-not-allowed disabled:bg-gray-300"
+        :disabled="loading === true"
+        :class="{
+          '!bg-red-500': success === false,
+          '!bg-green-500': success === true,
+        }"
+      >
+        {{
+          success === false
+            ? "Fehlgeschlagen"
+            : loading === true
+              ? "Lädt..."
+              : "Registrieren"
+        }}
+      </BaseButton>
       <p class="mt-1 text-xs drop-shadow-md">
         Du hast bereits ein Konto?
         <NuxtLink
@@ -57,44 +73,15 @@
 
 <script lang="ts" setup>
 import type { AuthFormField } from "#build/components";
-import { string } from "yup";
-
-const firstnameValidator = string()
-  .required("Vorname ist erforderlich")
-  .min(2, "Der Vorname muss mindestens 2 Zeichen lang sein")
-  .max(50, "Der Vorname darf maximal 50 Zeichen lang sein");
-const lastnameValidator = string()
-  .required("Nachname ist erforderlich")
-  .min(2, "Der Nachname muss mindestens 2 Zeichen lang sein")
-  .max(50, "Der Nachname darf maximal 50 Zeichen lang sein");
-const emailValidator = string()
-  .required("E-Mail ist erforderlich")
-  .email("E-Mail ist ungültig");
-const passwordValidator = string()
-  .required("Passwort ist erforderlich")
-  .min(8, "Das Passwort muss mindestens 8 Zeichen lang sein")
-  .matches(
-    /[a-z]/,
-    "Das Passwort muss mindestens einen Kleinbuchstaben enthalten",
-  )
-  .matches(
-    /[A-Z]/,
-    "Das Passwort muss mindestens einen Großbuchstaben enthalten",
-  )
-  .matches(/\d/, "Das Passwort muss mindestens eine Ziffer enthalten")
-  .matches(
-    /[=+\[\]()<>?!@#$%^&*.,:;]/,
-    "Das Passwort muss mindestens ein Sonderzeichen enthalten: =+[]()<>?!@#$%^&*.,:;",
-  )
-  .matches(
-    /^[a-zA-Z0-9=+\[\]()<>?!@#$%^&*.,:;]*$/,
-    "Das Passwort darf nur die folgende Sonderzeichen enthalten: =+[]()<>?!@#$%^&*.,:;",
-  );
+import * as registerSchema from "~/utils/schemas/register.schema";
 
 const firstnameField = ref<InstanceType<typeof AuthFormField>>();
 const lastnameField = ref<InstanceType<typeof AuthFormField>>();
 const emailField = ref<InstanceType<typeof AuthFormField>>();
 const passwordField = ref<InstanceType<typeof AuthFormField>>();
+
+const loading = ref<boolean>();
+const success = ref<boolean>();
 
 const handleSubmit = async () => {
   const firstnameValid = await firstnameField.value?.validateField();
@@ -102,19 +89,30 @@ const handleSubmit = async () => {
   const emailValid = await emailField.value?.validateField();
   const passwordValid = await passwordField.value?.validateField();
 
-  if (firstnameValid && lastnameValid && emailValid && passwordValid)
+  if (firstnameValid && lastnameValid && emailValid && passwordValid) {
+    loading.value = true;
+
     signInWithEmailAndPassword(
       emailField.value?.value!,
       passwordField.value?.value!,
       firstnameField.value?.value!,
       lastnameField.value?.value!,
     );
+  }
 };
 
 const signInWithEmailAndPassword = async (
   email: string,
   password: string,
-  firstName: string,
-  lastName: string,
-) => {};
+  firstname: string,
+  lastname: string,
+) => {
+  const { error } = await useFetch("/api/auth/signup", {
+    method: "POST",
+    body: JSON.stringify({ email, password, firstname, lastname }),
+  });
+
+  success.value = error.value === null;
+  loading.value = false;
+};
 </script>

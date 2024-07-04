@@ -13,10 +13,7 @@
 definePageMeta({
   name: "login",
   layout: "auth",
-  auth: {
-    unauthenticatedOnly: true,
-    navigateAuthenticatedTo: "/dashboard",
-  },
+  middleware: "guest-only",
 });
 
 useHead({

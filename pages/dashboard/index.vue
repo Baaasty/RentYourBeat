@@ -6,7 +6,8 @@
     />
     <section class="overflow-hidden pt-4">
       <BaseButton @click="signOut()">LOGOUT</BaseButton>
-      <p class="whitespace-pre-wrap">{{ data }}</p>
+      <pre>{{ status }}</pre>
+      <pre>{{ user }}</pre>
     </section>
   </main>
 </template>
@@ -14,13 +15,12 @@
 <script lang="ts" setup>
 definePageMeta({
   name: "dashboard",
+  middleware: "auth",
 });
 
 useHead({
   title: "RentYourBeat - Dein Dashboard",
 });
 
-const { signOut } = useAuth();
-
-const { data } = useFetch("/api/me");
+const { signOut, status, user } = useAuth();
 </script>
