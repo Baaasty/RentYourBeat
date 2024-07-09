@@ -31,10 +31,9 @@
         :name="
           !passwordVisible ? 'mingcute:eye-close-line' : 'mingcute:eye-line'
         "
-        size="28"
         @click="passwordVisible = !passwordVisible"
         v-if="props.type === 'password'"
-        class="absolute right-0 top-1/2 z-10 float-right h-full w-auto -translate-y-1/2 transform cursor-pointer p-2"
+        class="absolute right-0 top-1/2 z-10 float-right mr-2 -translate-y-1/2 transform cursor-pointer text-3xl"
       />
     </div>
     <p
